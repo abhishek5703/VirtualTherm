@@ -1,0 +1,57 @@
+VIRTUALTHERM — START HERE
+========================
+
+What this project is
+--------------------
+A C++17 software simulation of an embedded temperature-controlled fan.
+It requires no physical hardware and no third-party libraries.
+
+Build and test on Windows
+-------------------------
+1. Extract the project ZIP.
+2. Open a terminal in the extracted VirtualTherm folder.
+3. Run:
+
+   cmake -S . -B build
+   cmake --build build --config Release
+   ctest --test-dir build -C Release --output-on-failure
+
+You can alternatively run build_windows.bat if CMake and the MSVC compiler
+are available in your terminal.
+
+Run a demonstration
+-------------------
+With the default Visual Studio generator:
+
+   .\build\Release\virtualtherm.exe --scenario overheat --steps 150 --csv examples\my_overheat.csv
+
+If your generator places the executable directly under build, use:
+
+   .\build\virtualtherm.exe --scenario overheat --steps 150 --csv examples\my_overheat.csv
+
+Try these scenarios
+-------------------
+Run one at a time from the project root. With the default Visual Studio
+generator, use the Windows executable path:
+
+   .\build\Release\virtualtherm.exe --scenario normal
+   .\build\Release\virtualtherm.exe --scenario overheat
+   .\build\Release\virtualtherm.exe --scenario sensor-fault
+   .\build\Release\virtualtherm.exe --scenario workload-spike
+   .\build\Release\virtualtherm.exe --scenario noisy-sensor
+
+If using a single-configuration generator, replace the executable path with
+.\build\virtualtherm.exe. Use --help for all arguments. Paths passed to
+--csv must point to an existing directory.
+
+Where to start reading
+----------------------
+1. README.md                  - build steps and feature overview
+2. docs/architecture.md       - program flow and control rules
+3. docs/test_plan.md           - test coverage and expected behavior
+4. docs/interview_guide.md     - interview explanation and questions
+
+Important limitation
+--------------------
+This is a software simulation. The thermal model and fan RPM estimates are
+illustrative; no physical motor, sensor, fan, or microcontroller is used.
